@@ -1,5 +1,4 @@
 package cl.utfsm.lp.entidades;
-
 public class Animal extends Entidad
 {
 	String nombre;
