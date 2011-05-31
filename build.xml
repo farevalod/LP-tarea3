@@ -1,0 +1,36 @@
+<project name="Proyecto" default="dist" basedir=".">
+    <description>
+      ANT para compilado del proyecto 
+    </description>
+  	<property name="src" location="src"/>
+  	<property name="build" location="build"/>
+	<property name="dist" location="dist/"/>
+
+  	<target name="init">
+    	<tstamp/>
+    	<mkdir dir="${build}"/>
+  	</target>
+
+  	<target name="compile" depends="init"
+        description="compile the source " >
+    	<javac srcdir="${src}" destdir="${build}"/>
+	  	<move todir="${build}">
+      		<filelist dir=".">
+	        	<file name="entrada.txt"/>
+			    <file name="lion.png"/>
+			    <file name="cow.png"/>
+			    <file name="grass.png"/>
+			    <file name="plant.png"/>
+			    <file name="cadaver.png"/>
+			</filelist>
+		</move>
+	</target>
+
+	<target name="dist" depends="compile"
+	  	description="generate the distribution" >
+		<!-- Create the distribution directory -->
+	  	<mkdir dir="${dist}/lib"/>
+	  	<!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
+	  	<jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
+	</target>
+</project>
